@@ -4,6 +4,7 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pm2.sh" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/components/forms/addressForm.js" afterDir="false" />
@@ -107,7 +108,6 @@
       <change beforePath="$PROJECT_DIR$/../RNTest/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/yarn.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" />
@@ -1604,7 +1604,7 @@
       <option name="presentableId" value="Default" />
       <updated>1635347709800</updated>
       <workItem from="1635347713207" duration="70000" />
-      <workItem from="1635347793122" duration="83329000" />
+      <workItem from="1635347793122" duration="83962000" />
     </task>
     <servers />
   </component>
