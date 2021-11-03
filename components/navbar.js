@@ -80,7 +80,7 @@ export default function Navbar({children}) {
                 <Col span={8}>
                     <a title="ALPSMart.co.nz" className="logo">
                         <Link href="/" passHref>
-                            <img src="http://localhost:3000/images/logo.png"
+                            <img src="/images/logo.png"
                                  alt="TreasureBox.co.nz" width="300"/>
                         </Link>
                     </a>

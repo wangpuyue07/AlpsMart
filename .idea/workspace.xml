@@ -4,22 +4,6 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.babelrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/constants/products.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/[slug3].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/[slug1]/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/account/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/account/me.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/checkout/cart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/product/[sku].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/scan_code.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/antd.less" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/components/forms/addressForm.js" afterDir="false" />
@@ -122,6 +106,8 @@
       <change beforePath="$PROJECT_DIR$/../RNTest/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" />
@@ -1575,7 +1561,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="205wMgbis9WB4HgNS7uGU9915Qz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -1618,7 +1604,7 @@
       <option name="presentableId" value="Default" />
       <updated>1635347709800</updated>
       <workItem from="1635347713207" duration="70000" />
-      <workItem from="1635347793122" duration="80834000" />
+      <workItem from="1635347793122" duration="81900000" />
     </task>
     <servers />
   </component>
@@ -1630,7 +1616,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
