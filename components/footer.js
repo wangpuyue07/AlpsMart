@@ -88,7 +88,7 @@ export default function Footer({children}) {
                         </Row>
                         <Row align="middle">
                             <Col span={4}>
-                                <img src="http://localhost:3000/images/scan_code.png"
+                                <img src="/images/scan_code.png"
                                      alt="TreasureBox.co.nz" style={{width: '100%'}}/>
                             </Col>
                             <Col span={12}></Col>
@@ -104,7 +104,7 @@ export default function Footer({children}) {
                         </Row>
                         <Row style={{marginBottom: '3rem'}} justify="center" align="middle">
                             <Col span={3}>
-                                <img src="http://localhost:3000/images/logo.png"
+                                <img src="/images/logo.png"
                                      alt="TreasureBox.co.nz" style={{width: '75%', marginTop: '-5px'}}/>
                             </Col>
                             <Col span={17}>
