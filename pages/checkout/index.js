@@ -23,7 +23,7 @@ export default function Home() {
                 title="Checkout"
                 subTitle="This is a subtitle"
                 extra={[
-                    <Text type={'danger'}>*Required Field</Text>,
+                    <Text key={'1'} type={'danger'}>*Required Field</Text>,
                 ]}
             >
                 <Row gutter={[36,0]} justify="space-around" style={{marginTop:32,marginBottom:36}} >
