@@ -16,10 +16,11 @@ import {
     Pagination,
     Select,
     Space,
-    Divider
+    Divider, Result, Modal
 } from "antd";
 const {Option} = Select;
-import {QuestionCircleOutlined} from "@ant-design/icons";
+import {QuestionCircleOutlined, RollbackOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import {useState} from "react";
 const { Paragraph,Text,Title } = Typography;
 const { Meta } = Card;
 
@@ -38,6 +39,7 @@ const Content = ({ children, extraContent }) => (
 export default function Home() {
     const router = useRouter()
     const {slug1,slug2}= router.query;
+    const [ModalVisible, setModalVisible] = useState(false);
     return (
         <Layout >
             <PageHeader
@@ -106,7 +108,7 @@ export default function Home() {
                                     }}
                                 />
                             }
-                            actions={[<Button key={index} type="link" onClick={()=>{alert('Add to Cart')}}>Add to Cart</Button>]}
+                            actions={[<Button key={index} type="link" onClick={()=>{setModalVisible(true)}}>Add to Cart</Button>]}
                         >
                             <Meta
                                 title={<Row justify="space-between"><Col>Product: {index}</Col><Col><Text type="success">$123.1</Text></Col></Row>}
@@ -117,6 +119,25 @@ export default function Home() {
                             />
                         </Card></Col>)
                     }
+                    <Modal
+                        visible={ModalVisible}
+                        footer={[
+                            <Button key="submit"  loading={false} icon={<RollbackOutlined />}
+                                    onClick={()=>{setModalVisible(false)}}>
+                                Continue Shopping
+                            </Button>,
+                            <Button key="back" type="primary" onClick={()=>{setModalVisible(false);
+                                router.push('/checkout/cart')}}  icon={<ShoppingCartOutlined />}>
+                                Go To Cart
+                            </Button>
+                        ]}
+                    >
+                        <Result
+                            status="success"
+                            title="You've just added this product to the cart successfully!"
+                            subTitle="MAIZE 1.3M LED Entertainment Unit - WHITE"
+                        />
+                    </Modal>
                 </Row>
                 <Row justify="end" style={{margin:'3rem 0 3rem 0'}}>
                     <Col>

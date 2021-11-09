@@ -4,6 +4,8 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/checkout_sessions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/checkout/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/components/forms/addressForm.js" afterDir="false" />
@@ -107,7 +109,13 @@
       <change beforePath="$PROJECT_DIR$/../RNTest/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/yarn.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[slug1]/[slug2]/[slug3].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/[slug3].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[slug1]/[slug2]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/checkout/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/checkout/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/product/[sku].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/product/[sku].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" />
@@ -1560,6 +1568,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -1604,7 +1619,8 @@
       <option name="presentableId" value="Default" />
       <updated>1635347709800</updated>
       <workItem from="1635347713207" duration="70000" />
-      <workItem from="1635347793122" duration="85360000" />
+      <workItem from="1635347793122" duration="100854000" />
+      <workItem from="1636450992345" duration="5105000" />
     </task>
     <servers />
   </component>
@@ -1633,5 +1649,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

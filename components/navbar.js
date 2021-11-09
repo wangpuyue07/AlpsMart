@@ -87,7 +87,7 @@ export default function Navbar({children}) {
                 </Col>
                 <Col span={10}>
                     <AutoComplete
-                        dropdownClassName="certain-category-search-dropdown" Z
+                        dropdownClassName="certain-category-search-dropdown"
                         style={{width: '85%'}}
                         options={options}
                     >

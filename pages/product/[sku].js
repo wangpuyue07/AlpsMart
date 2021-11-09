@@ -164,10 +164,7 @@ export default function Home() {
                         <Title level={3}>MAIZE 1.3M LED Entertainment Unit - WHITE</Title>
                         <Text>SKU: 22005</Text>
                         <Card style={{width: '100%', marginTop: '30px'}}>
-                            <Title level={5}>$380.00</Title>
-                            <p><Text type="secondary">Or 10 Payments of $14.00 interest free with Genoapay</Text></p>
-                            <p><Text type="secondary">4 fortnightly payments of NZ$ 35.00</Text></p>
-                            <p><Text type="secondary">6 payments from NZ$ 23.33</Text></p>
+                            <Title level={5}>$380.00 NZD</Title>
                             <Space size={'large'} align="baseline" style={{marginTop: '30px'}}>
                                 <Title level={5}>Qty:</Title>
                                 <Select defaultValue="1" onChange={(value) => {
@@ -189,64 +186,7 @@ export default function Home() {
                                      src="https://www.treasurebox.co.nz/media/wysiwyg/test-images/bank-icon.jpg"
                                      width="265" height="30"/>
                             </Space>
-                            <Radio.Group>
-                                <Space direction="vertical">
-                                    <Radio value={1}>Standard Delivery $23.00</Radio>
-                                    <Space size={'large'} align="baseline" direction="horizontal">
-                                        <Title level={5} style={{fontWeight: 'normal', marginLeft: 27, fontSize: 14}}>Shipping
-                                            to:</Title>
-                                        <Select defaultValue="auckland" onChange={(value) => {
-                                            console.log(value)
-                                        }} style={{width: '120px'}}>
-                                            <Select.OptGroup label="Main Cities">
-                                                <Select.Option value="auckland">Auckland</Select.Option>
-                                                <Select.Option value="outerAuckland">Outer Auckland</Select.Option>
-                                                <Select.Option value="hamilton">Hamilton</Select.Option>
-                                                <Select.Option value="tauranga">Tauranga</Select.Option>
-                                                <Select.Option value="wellington">Wellington</Select.Option>
-                                                <Select.Option value="christchurch">Christchurch</Select.Option>
-                                                <Select.Option value="dunedin">Dunedin</Select.Option>
-                                            </Select.OptGroup>
-                                            <Select.OptGroup label="North Island">
-                                                <Select.Option value="auckland">Auckland</Select.Option>
-                                                <Select.Option value="whangarei">Whangarei</Select.Option>
-                                                <Select.Option value="rotoroa">Rotoroa</Select.Option>
-                                                <Select.Option value="taupo">Taupo</Select.Option>
-                                            </Select.OptGroup>
-                                            <Select.OptGroup label="South Island">
-                                                <Select.Option value="nelson">Nelson</Select.Option>
-                                                <Select.Option value="greyMonth">GreyMonth</Select.Option>
-                                                <Select.Option value="christchurch">Christchurch</Select.Option>
-                                                <Select.Option value="timaro">Timaro</Select.Option>
-                                            </Select.OptGroup>
-                                        </Select>
-                                    </Space>
-                                    <Title level={5} style={{fontWeight: 'normal', marginLeft: 24, fontSize: 12}}
-                                           type={'warning'}>Please note: Additional charge will be applied for rural
-                                        area.</Title>
-                                    <Radio value={2}>Pick up my order from Auckland centre <Tag
-                                        icon={<CheckCircleOutlined/>} color="success">FREE</Tag></Radio>
-                                </Space>
-                            </Radio.Group>
-                            <Row style={{marginTop: '12px'}}>
-                                <Col span={12}><Title level={5} style={{marginLeft: 24, fontSize: 14}}>Pick up centre
-                                    address:</Title></Col>
-                                <Col span={12}><Title level={5}
-                                                      style={{marginLeft: 24, fontSize: 14}}>Note:</Title></Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}><Title level={5}
-                                                      style={{fontWeight: 'normal', marginLeft: 24, fontSize: 12}}
-                                                      type={'secondary'}>29A Don Buck Rd<br/>Massey<br/>Auckland
-                                    0614</Title></Col>
-                                <Col span={12}><Title level={5}
-                                                      style={{fontWeight: 'normal', marginLeft: 24, fontSize: 12}}
-                                                      type={'secondary'}>Please have your order number handy and present
-                                    your Photo ID with your corresponding credit card on site as pick up reference for
-                                    security purpose.</Title></Col>
-                            </Row>
-                            <Title level={5} style={{fontWeight: 'normal', marginLeft: 24, fontSize: 12}}
-                                   type={'danger'}>Pickup under COVID19 Level 2 Only (Needs to be arranged)</Title>
+
                             <Row align={'end'}>
                                 <Col>
                                     <Button style={{padding: '0 48px', marginTop: '24px'}} type="primary" shape="round"
@@ -258,7 +198,7 @@ export default function Home() {
                                         visible={ModalVisible}
                                         footer={[
                                             <Button key="submit"  loading={false} icon={<RollbackOutlined />}
-                                                    onClick={()=>{setModalVisible(false);router.push('/')}}>
+                                                    onClick={()=>{setModalVisible(false)}}>
                                                 Continue Shopping
                                             </Button>,
                                             <Button key="back" type="primary" onClick={()=>{setModalVisible(false);
