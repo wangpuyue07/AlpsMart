@@ -3,7 +3,7 @@ import Footer from './footer'
 import Head from "next/head";
 import {Alert} from "antd";
 
-export default function Layout({children}) {
+export default function Layout({children,session,freshData}) {
     return (
         <>
             <Head>
@@ -17,7 +17,7 @@ export default function Layout({children}) {
                 message="COVID-19 UPDATE: Our dispatching center is fully operating. PLEASE EXPECT DELAY due to our courier partners are experiencing high volumes. Pickup Center remains closed under alert level 3."
             />
             <section style={{maxWidth: '1170px', margin: '0 auto'}}>
-                <Navbar/>
+                <Navbar session={session} freshData={freshData}/>
                 <main>{children}</main>
             </section>
             <Footer/>

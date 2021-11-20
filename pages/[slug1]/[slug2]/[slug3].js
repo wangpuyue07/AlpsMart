@@ -1,6 +1,6 @@
 import Layout from "../../../components/layout";
 import { useRouter } from 'next/router'
-
+import ProductCard from '../../../components/productCard'
 import {
     Avatar,
     Button,
@@ -17,7 +17,8 @@ import {
     Select, Pagination, Result, Modal
 } from "antd";
 import {QuestionCircleOutlined, RollbackOutlined, ShoppingCartOutlined} from "@ant-design/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {Categories} from "../../../constants/categories";
 const {Option}  = Select;
 const { Paragraph,Text,Title } = Typography;
 const { Meta } = Card;
@@ -33,14 +34,18 @@ const Content = ({ children, extraContent }) => (
 );
 
 
-export default function Home() {
+export default function Home({session,freshData}) {
     const router = useRouter()
-    const {slug1,slug2,slug3}= router.query;
     const [ModalVisible, setModalVisible] = useState(false);
+    let {slug1,slug2,slug3}= router.query;
+    if(!slug1||!slug2||!slug3) return null;
+    const slug1Name = slug1.split('-').join(' ');
+    const slug2Name = slug2.split('-').join(' ');
+    const slug3Name = slug3.split('-').join(' ');
     return (
-        <Layout >
+        <Layout session={session} freshData={freshData}>
             <PageHeader
-                title={slug3}
+                title={Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].name}
                 className="site-page-header"
                 subTitle="This is a subtitle"
                 tags={<Tag color="green">Active</Tag>}
@@ -50,25 +55,28 @@ export default function Home() {
                     }}><QuestionCircleOutlined/>Contact Us</Button>,
                 ]}
                 breadcrumb={<Breadcrumb>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item onClick={()=>{
+                        router.push(`/`)
+                    }}>Home</Breadcrumb.Item>
                     <Breadcrumb.Item onClick={()=>{
                         router.push(`/${slug1}`)
                     }}>
-                        <a>{slug1}</a>
+                        <a>{Categories[slug1Name].name}</a>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item onClick={()=>{
                         router.push(`/${slug1}/${slug2}`)
                     }}>
-                        <a>{slug2}</a>
+                        <a>{Categories[slug1Name].subCategories[slug2Name].name}</a>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        {slug3}
+                        {Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].name}
                     </Breadcrumb.Item>
                 </Breadcrumb> }
             >
                 <Content>
+                    <Row><Col><img src={Categories[slug1Name]&&Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].images[0]}/></Col></Row>
                     <Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
-                        The rainy season is around and you would want one partner who could accompany you on all your trips around the neighborhood. Whether you want to take a stroll in the morning or you have to go across the street to do some grocery, you want to be safe because you never know when the rain comes down. To cater to all your specific needs, you would definitely need to have an umbrella handy in your home & living area so that you can grab it and go out for a stroll whenever you like. Check out our wide range of health & beautyproducts and you are sure to find the best parasols in their because they not only save you from the rain coming down but can also keep you protected against the harsh effects of sun and keep you looking fresh all day long. We bring a wide range of products including the fanciest of items like lace umbrellas to simple black ones that are meant to serve their purpose only. Whatever the case, you can rest assured that our products won’t just serve the aesthetics for specific use, like in photo shoots, but are also made sturdy to last the test of time. You can always count on use for getting the best of both worlds at a nominal price.
+                        {Categories[slug1Name]&&<div dangerouslySetInnerHTML={{ __html:Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].description}}></div>}
                     </Paragraph>
                 </Content>
             </PageHeader>
@@ -133,27 +141,9 @@ export default function Home() {
                 </Row>
             <Row gutter={[16,32]} justify="space-between">
                 {
-                    Array.from(Array(20)).map((value,index)=><Col key={index}><Card
-                        style={{ width: 300, cursor:'pointer' }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                onClick={()=>{
-                                    router.push(`/product/${index}`);
-                                }}
-                            />
-                        }
-                        actions={[<Button key={index} type="link" onClick={()=>{setModalVisible(true)}}>Add to Cart</Button>]}
-                    >
-                        <Meta
-                            title={<Row justify="space-between"><Col>Product: {index}</Col><Col><Text type="success">$123.1</Text></Col></Row>}
-                            description="This is the description"
-                            onClick={()=>{
-                                router.push(`/product/${index}`);
-                            }}
-                        />
-                    </Card></Col>)
+                    Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].productIds?.map((productId,index)=><Col key={index}>
+                        <ProductCard productId={productId} session={session} key={index} freshData={freshData}/>
+                    </Col>)
                 }
 
                 <Modal
@@ -178,7 +168,7 @@ export default function Home() {
             </Row>
                 <Row justify="end" style={{margin:'3rem 0 3rem 0'}}>
                     <Col>
-                        <Pagination defaultCurrent={1} total={50} />
+                        <Pagination defaultCurrent={1} total={3} />
                     </Col>
                 </Row>
             </section>

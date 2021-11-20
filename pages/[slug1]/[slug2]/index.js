@@ -1,7 +1,8 @@
+import {useState} from "react";
 import Layout from "../../../components/layout";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {Categories} from '../../../constants/products'
+import {Categories} from '../../../constants/categories'
 import {
     Avatar,
     Button,
@@ -20,7 +21,8 @@ import {
 } from "antd";
 const {Option} = Select;
 import {QuestionCircleOutlined, RollbackOutlined, ShoppingCartOutlined} from "@ant-design/icons";
-import {useState} from "react";
+import ProductCard from "../../../components/productCard";
+
 const { Paragraph,Text,Title } = Typography;
 const { Meta } = Card;
 
@@ -36,14 +38,19 @@ const Content = ({ children, extraContent }) => (
 );
 
 
-export default function Home() {
+export default function Home({session,freshData}) {
     const router = useRouter()
-    const {slug1,slug2}= router.query;
     const [ModalVisible, setModalVisible] = useState(false);
+    let {slug1,slug2}= router.query;
+    if(!slug1||!slug2) return null;
+    slug1 = slug1.toLowerCase();
+    slug2 = slug2.toLowerCase();
+    const slug1Name = slug1.split('-').join(' ');
+    const slug2Name = slug2.split('-').join(' ');
     return (
-        <Layout >
+        <Layout session={session} freshData={freshData}>
             <PageHeader
-                title={slug2}
+                title={Categories[slug1Name].subCategories[slug2Name].name}
                 className="site-page-header"
                 subTitle="This is a subtitle"
                 tags={<Tag color="green">Active</Tag>}
@@ -59,16 +66,17 @@ export default function Home() {
                     <Breadcrumb.Item onClick={()=>{
                         router.push(`/${slug1}`)
                     }}>
-                        <a>{slug1}</a>
+                        <a>{Categories[slug1Name].name}</a>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        {slug2}
+                        {Categories[slug1Name].subCategories[slug2Name].name}
                     </Breadcrumb.Item>
                 </Breadcrumb> }
             >
                 <Content>
+                    <Row><Col><img src={Categories[slug1Name]&&Categories[slug1Name].subCategories[slug2Name].images[0]}/></Col></Row>
                     <Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
-                        A snug living room will put you in better spirits and bring fun for your family. TreasureBox offers a diverse range of high-quality Living Room Furniture to suit a range of styles and budgets.
+                        {Categories[slug1Name]&&<div dangerouslySetInnerHTML={{ __html:Categories[slug1Name].subCategories[slug2Name].description}}></div>}
                     </Paragraph>
                 </Content>
             </PageHeader>
@@ -76,8 +84,8 @@ export default function Home() {
             <section style={{margin: '0 24px'}}>
                 <Row gutter={[42,12]}>
                         {
-                            Categories[slug1]&&Categories[slug1.split('-').join(' ')][slug2.split('-').join(' ')].map((slug3,index)=>
-                                <Col key={index}><Link passHref href={`/${slug1}/${slug2}/${slug3.split(' ').join('-')}`}><Typography.Link>{slug3}</Typography.Link></Link></Col>)
+                            slug1&&Object.keys(Categories[slug1Name]&&Categories[slug1Name].subCategories[slug2Name].subCategories).map((slug3Name,index)=>
+                                <Col key={index}><Link passHref href={`/${slug1}/${slug2}/${slug3Name.split(' ').join('-')}`}><Typography.Link>{Categories[slug1Name]&&Categories[slug1Name].subCategories[slug2Name].subCategories[slug3Name].name}</Typography.Link></Link></Col>)
                         }
                 </Row>
                 <Row style={{margin: '2rem 0 1rem 0'}}>
@@ -97,27 +105,10 @@ export default function Home() {
                 </Row>
                 <Row gutter={[16,32]} justify="space-between">
                     {
-                        Array.from(Array(20)).map((value,index)=><Col key={index}><Card
-                            style={{ width: 300, cursor:'pointer' }}
-                            cover={
-                                <img
-                                    alt="example"
-                                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                    onClick={()=>{
-                                        router.push(`/product/${index}`);
-                                    }}
-                                />
-                            }
-                            actions={[<Button key={index} type="link" onClick={()=>{setModalVisible(true)}}>Add to Cart</Button>]}
-                        >
-                            <Meta
-                                title={<Row justify="space-between"><Col>Product: {index}</Col><Col><Text type="success">$123.1</Text></Col></Row>}
-                                description="This is the description"
-                                onClick={()=>{
-                                    router.push(`/product/${index}`);
-                                }}
-                            />
-                        </Card></Col>)
+                        Object.keys(Categories[slug1Name].subCategories[slug2Name].subCategories).map(key=>Categories[slug1Name].subCategories[slug2Name].subCategories[key].productIds||[]).flat().map((productId,index)=>{
+                            console.log(productId);
+                            return <Col key={index}><ProductCard productId={productId} session={session} key={index} freshData={freshData}/></Col>
+                        })
                     }
                     <Modal
                         visible={ModalVisible}
@@ -141,7 +132,7 @@ export default function Home() {
                 </Row>
                 <Row justify="end" style={{margin:'3rem 0 3rem 0'}}>
                     <Col>
-                        <Pagination defaultCurrent={1} total={50} />
+                        <Pagination defaultCurrent={1} total={3} />
                     </Col>
                 </Row>
 

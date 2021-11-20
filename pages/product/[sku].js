@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Layout from "../../components/layout";
 import {useRouter} from 'next/router';
 import {
@@ -17,158 +17,88 @@ import {
     Descriptions, Modal,Result
 } from "antd";
 import {CheckCircleOutlined, PlusOutlined,ShoppingCartOutlined,RollbackOutlined} from '@ant-design/icons';
+import {getSession} from "next-auth/react";
+import Loading from '../../components/loading'
 
 const {Title, Text} = Typography;
 
-export default function Home() {
+export default function Home({session,freshData}) {
     const router = useRouter()
     const {sku} = router.query;
     const [visible, setVisible] = useState(false);
+    const [product, setProduct] = useState(null);
+    const [quantity,setQuantity] = useState(1);
     const [ModalVisible, setModalVisible] = useState(false);
+    useEffect(async ()=>{
+        const res = await fetch(`/api/stripe/product/${sku}`, {
+            method: 'GET'
+        })
+        let data = await res.json();
+        data.metadata.category = JSON.parse(data.metadata.category);
+        data.metadata.features = JSON.parse(data.metadata.features);
+        data.metadata.specifications = JSON.parse(data.metadata.specifications);
+        data.metadata.instruction = JSON.parse(data.metadata.instruction);
+        setProduct(data);
+    },[sku])
     return (
-        <Layout>
+        product? <Layout session={session} freshData={freshData}>
             <section style={{margin: '0 24px 36px 24px'}}>
                 <Row style={{margin: '2rem 0'}}>
                     <Breadcrumb>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item onClick={() => {
-                            router.push(`/Furniture `)
+                            router.push(`/${product.metadata.category[0].toLowerCase().split(' ').join('-')}`)
                         }}>
-                            <a>Furniture </a>
+                            <a>{product.metadata.category[0]} </a>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item onClick={() => {
-                            router.push(`/Furniture/Living-Room-Furniture`)
+                            router.push(`/${product.metadata.category[0].toLowerCase().split(' ').join('-')}/${product.metadata.category[1].toLowerCase().split(' ').join('-')}`)
                         }}>
-                            <a>Living Room Furniture</a>
+                            <a>{product.metadata.category[1]} </a>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item onClick={() => {
-                            router.push(`/Furniture/Living-Room-Furniture/Entertainment-Units`)
+                            router.push(`/${product.metadata.category[0].toLowerCase().split(' ').join('-')}/${product.metadata.category[1].toLowerCase().split(' ').join('-')}/${product.metadata.category[2].toLowerCase().split(' ').join('-')}`)
                         }}>
-                            <a>Entertainment Units</a>
+                            <a>{product.metadata.category[2]} </a>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item>
-                            {sku}
+                            {product.name}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Row>
                 <Row gutter={[24, 0]}>
                     <Col xl={12} md={24}>
                         <Carousel autoplay={false} dots={true}>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005.jpg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-1.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-2.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-3.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-4.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-5.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-6.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-7.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-8.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
-                            <div>
-                                <AntImage
-                                    preview={{visible: false}}
-                                    alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-9.jpeg"
-                                    onClick={() => setVisible(true)}
-                                />
-                            </div>
+                            {
+                                product.images.map((image,index)=><div key={index}>
+                                    <AntImage
+                                        preview={{visible: false}}
+                                        alt={''}
+                                        src={image}
+                                        onClick={() => setVisible(true)}
+                                    />
+                                </div>)
+                            }
                         </Carousel>
                         <div style={{display: 'none'}}>
                             <AntImage.PreviewGroup preview={{visible, onVisibleChange: vis => setVisible(vis)}}>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005.jpg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-1.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-2.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-3.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-4.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-5.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-6.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-7.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-8.jpeg"/>
-                                <img alt={''}
-                                    src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/1024x768/9df78eab33525d08d6e5fb8d27136e95/2/2/22005-9.jpeg"/>
-                            </AntImage.PreviewGroup>
+                                {
+                                    product.images.map((image,index)=><AntImage key={index} alt={image}
+                                                                           src={image}/>
+                                    )
+                                }
+                                </AntImage.PreviewGroup>
                         </div>
                     </Col>
                     <Col xl={12} md={24}>
-                        <Title level={3}>MAIZE 1.3M LED Entertainment Unit - WHITE</Title>
-                        <Text>SKU: 22005</Text>
+                        <Title level={3}>{product.name}</Title>
+                        <Text>SKU: {product.id}</Text>
                         <Card style={{width: '100%', marginTop: '30px'}}>
-                            <Title level={5}>$380.00 NZD</Title>
+                            <Title level={5}>${product.metadata.price/100} NZD</Title>
                             <Space size={'large'} align="baseline" style={{marginTop: '30px'}}>
                                 <Title level={5}>Qty:</Title>
-                                <Select defaultValue="1" onChange={(value) => {
-                                    console.log(value)
+                                <Select value={quantity} onChange={(value) => {
+                                    setQuantity(value);
                                 }}>
                                     <Select.Option value="1">1</Select.Option>
                                     <Select.Option value="2">2</Select.Option>
@@ -191,8 +121,29 @@ export default function Home() {
                                 <Col>
                                     <Button style={{padding: '0 48px', marginTop: '24px'}} type="primary" shape="round"
                                             size={'large'} icon={<PlusOutlined/>}
-                                    onClick={()=>{
-                                        setModalVisible(true);
+                                    onClick={async ()=>{
+                                        if(session.user){
+                                            const checkoutSession = await fetch('/api/cart', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                },
+                                                body: JSON.stringify({
+                                                    priceId:product.metadata.priceId,
+                                                    quantity,
+                                                    productId:product.id
+                                                })
+                                            });
+                                            const data = await checkoutSession.json();
+                                            if(data.id){
+                                                const newSession = await getSession();
+                                                freshData({session:newSession})
+                                                setModalVisible(true);
+                                            }
+
+                                        }else{
+                                            alert('没登录')
+                                        }
                                     }}>Buy Now</Button>
                                     <Modal
                                         visible={ModalVisible}
@@ -210,7 +161,7 @@ export default function Home() {
                                         <Result
                                             status="success"
                                             title="You've just added this product to the cart successfully!"
-                                            subTitle="MAIZE 1.3M LED Entertainment Unit - WHITE"
+                                            subTitle={product.name}
                                         />
                                     </Modal>
                                 </Col>
@@ -220,80 +171,37 @@ export default function Home() {
                     </Col>
                 </Row>
                 <Descriptions style={{marginTop: 24}} title="Product Information:" bordered column={1}>
-                    <Descriptions.Item label="Description"><p>
-                        A brand new contemporary gem for your modern decor, simple and sleek design to fit in your
-                        living room for all your entertainment needs. This MAIZE High Gloss Entertainment Unit
-                        features flat top for all kind of TV or media storage, also comes with 2 independent
-                        cabinets and 2 open shelves allowing extra storage space for gaming consoles, headsets, DVDs
-                        and all sorts of accessories and other decorations such as vases and photos; equipped with
-                        LED lights which will make your room more fashionable, modern and background wall brighter;
-                        made of high quality particle board with a smooth melamine finish for easy maintenance and
-                        cleaning which is durable and sturdy, while the UV high gloss finish and tempered glass give
-                        the entertainment unit a modern look to anchor to your space.
-                        <br/><br/>We update the entertainment unit with a thicker board that look sturdy is thicker
-                        and stronger for use. Add modern style and storage space to your entertainment area with
-                        this MAIZE High Gloss Entertainment Unit now!
-                        <br/><br/>
-                        <strong>PLEASE NOTE:</strong> Assembly is required!
-                        <br/><br/>
-                    </p></Descriptions.Item>
+                    <Descriptions.Item label="Description">
+                        <div dangerouslySetInnerHTML={{__html:product.metadata.longDescription}}></div>
+                        <br/>
+                        <strong dangerouslySetInnerHTML={{__html:product.metadata.note}}></strong>
+                    </Descriptions.Item>
                     <Descriptions.Item label="Features">
                         <p>
                             <ul>
-                                <li>100% Brand New 1.3M High Gloss LED Entertainment Unit TV Stand Cabinet</li>
-
-                                <li>Modern and elegant design</li>
-
-                                <li>Features 2 storage cabinets and 2 open shelves</li>
-
-                                <li>Tempered glass shelves</li>
-
-                                <li>Come with 16 colours LED light</li>
-
-                                <li>High gloss finish - easy clean smooth surface</li>
-
-                                <li>High-quality thicker particle board with UV paint
-                                    construction
-                                </li>
-
-                                <li>Environmental friendly material</li>
-
-                                <li>1.3m flat top perfect for studios and
-                                    apartments
-                                </li>
-
-                                <li>Spacious storage space for media
-                                    accessories
-                                </li>
-
+                                {
+                                    product.metadata.features.map((feature,index)=><li key={index}>{feature}</li>)
+                                }
                             </ul>
                         </p>
                     </Descriptions.Item>
                     <Descriptions.Item label="Specifications">
                         <p>
                             <ul>
-                                <li>Product Dimensions (L W H): 130cm x 35cm x 35cm</li>
-                                <li>Package Dimensions (L W H): 150cm x 41cm x 11.5cm</li>
-                                <li>Product Weight: 19kg</li>
-                                <li>Package Weight: 21kg</li>
-                                <li>Board Thickness: 18mm / 15mm / 3mm</li>
-                                <li>Material: Particle board / Melamine / MDF / Metal / Tempered glass</li>
-                                <li>Colour: White</li>
+                                {
+                                    Object.keys(product.metadata.specifications).map((key,index)=><li key={index}>{key}: {product.metadata.specifications[key]}</li>)
+                                }
                             </ul>
-                            <br/>
-                            <p>Package Contents:<br/>1 x MAIZE 1.3M High Gloss LED Entertainment Unit TV Stand Cabinet -
-                                WHITE</p>
                         </p>
                     </Descriptions.Item>
                     <Descriptions.Item label="Instruction">
                         <p>
                             <a target="_blank" rel="noreferrer"
-                               href="https://treasurebox.co.nz/media/wysiwyg/instructions/22005-maize-1.3m-led-entertainment-unit.pdf">Entertainment
-                                Unit Assembly Instructions</a>
+                               href={product.metadata.instruction.url}>{product.metadata.instruction.name}</a>
                         </p>
                     </Descriptions.Item>
                 </Descriptions>
             </section>
-        </Layout>
+        </Layout>:<Loading/>
     )
 }

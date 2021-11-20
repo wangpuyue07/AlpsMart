@@ -1,78 +1,94 @@
-import {Alert, Input, AutoComplete, Row, Col, Menu, Typography, Badge, Space} from 'antd';
+import {Alert, Input, AutoComplete, Row, Col, Menu, Spin, Badge, Space} from 'antd';
 import {UserOutlined, QuestionCircleOutlined, ShoppingCartOutlined} from '@ant-design/icons';
-import {Categories} from '../constants/products'
+import {Categories} from '../constants/categories'
 import Link from 'next/link';
+import {debounce} from "debounce";
+import algoliasearch from 'algoliasearch/lite';
 
+const client = algoliasearch('ZAZ6U12BFI', 'ea3762995c8ce76a7b97c28acb9e6917');
+const index = client.initIndex('Products');
 
 import {useRouter} from 'next/router';
 import styled from 'styled-components'
 
 const {SubMenu} = Menu;
-const {Paragraph, Text} = Typography;
 
 import {useState} from "react";
+import {useSession} from "next-auth/react";
 
 
-const renderTitle = (title) => (
+const renderTitle = (category,input) => (
     <span>
-    {title}
+    {category}
+        <Link href={{pathname: '/search', query: {input,category}}}>
         <a
             style={{
                 float: 'right',
             }}
-            href="https://www.google.com/search?q=antd"
-            target="_blank"
+
             rel="noopener noreferrer"
         >
       more
-    </a>
+    </a></Link>
   </span>
 );
 
-const renderItem = (title, count) => ({
-    value: title,
+const renderItem = (product) => ({
+    value: product.id,
     label: (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-            }}
-        >
-            {title}
-            <span>
-        <UserOutlined/> {count}
-      </span>
-        </div>
+        <Row gutter={[15]}>
+            <Col span={4}>
+                <img src={product.images[0]} style={{width:'100%'}}/>
+            </Col>
+            <Col span={20}>
+                <Space direction="vertical" size={'middle'} style={{width:'100%'}}>
+                    <p>{product.name}</p>
+                    <p>${product.metadata.price/100}</p>
+                </Space>
+            </Col>
+        </Row>
     ),
 });
 
-const options = [
-    {
-        label: renderTitle('Libraries'),
-        options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)],
-    },
-    {
-        label: renderTitle('Solutions'),
-        options: [renderItem('AntDesign UI FAQ', 60100), renderItem('AntDesign FAQ', 30010)],
-    },
-    {
-        label: renderTitle('Articles'),
-        options: [renderItem('AntDesign design language', 100000)],
-    },
-];
+
 
 const StyledNavbar = styled.div`
   .ant-badge {
     width: 100%;
     line-height: inherit;
-  }
+  };
 
 `;
 
 
-export default function Navbar({children}) {
-    const [current, setCurrent] = useState('mail');
-    const router = useRouter()
+export default function Navbar({session,freshData}) {
+    const [current, setCurrent] = useState('home');
+    const [options, setOptions] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+    const delaySearch = debounce(async function (value) {
+        setOptions([]);
+        if(!value) return;
+        setLoading(true);
+        var data = {};
+        const result = await index.search(value, {
+            hitsPerPage: 20,
+        });
+        setLoading(false);
+        result.hits.forEach(cell=>{
+            cell.metadata.category = JSON.parse(cell.metadata.category);
+            if(!data[cell.metadata.category[0]]){
+                data[cell.metadata.category[0]] = {
+                    label: renderTitle(cell.metadata.category[0],value),
+                    options: [renderItem(cell)],
+                }
+            }else{
+                data[cell.metadata.category[0]].options.push(renderItem(cell))
+            }
+        });
+        data = Object.keys(data).map(key=>data[key]);
+        setOptions(data);
+    }, 1000);
     return (
         <StyledNavbar>
             <Row><Col>&nbsp;</Col></Row>
@@ -90,14 +106,27 @@ export default function Navbar({children}) {
                         dropdownClassName="certain-category-search-dropdown"
                         style={{width: '85%'}}
                         options={options}
+                        dropdownMatchSelectWidth={500}
+                        notFoundContent={<Row style={{margin:'30px auto'}} justify="center"><Col>{loading?<Spin size="large"/>:<span>Sorry, nothing found for your input.</span>}</Col></Row>}
+                        onSelect={(barcode)=>{
+                            router.push(`/product/${barcode}`);
+                        }}
+                        onChange={(value) => {
+                            delaySearch(value);
+                        }}
                     >
-                        <Input.Search size="large" placeholder="Search" enterButton/>
+                        <Input.Search size="large" placeholder="Search" enterButton
+                                      onSearch={(value)=>{
+                                          value.trim()&&router.push(`/search?input=${value}`);
+                                      }}
+
+                        />
                     </AutoComplete>
                 </Col>
                 <Col span={6}>
                     <Row align="middle">
                         <Col span={8}>
-                            <Link href={'/account/login'}><a>
+                            <Link href={'/auth/signin'}><a>
                                 <Space direction="vertical" style={{width: '100%', textAlign: 'center'}}>
                                     <QuestionCircleOutlined
                                         style={{fontSize: '2.5rem'}}/>
@@ -106,7 +135,7 @@ export default function Navbar({children}) {
                             </a></Link>
                         </Col>
                         <Col span={8}>
-                            <Link href={'/account/login'}><a>
+                            <Link href={'/auth/me'}><a>
                                 <Space direction="vertical" style={{width: '100%', textAlign: 'center'}}>
                                     <UserOutlined
                                         style={{fontSize: '2.5rem'}}/>
@@ -115,7 +144,9 @@ export default function Navbar({children}) {
                             </Link>
                         </Col>
                         <Col span={8}>
-                            <Badge count={2} offset={[-20, 0]}>
+                            <Badge count={session?.user?.cartItems.map(item=>item.quantity).reduce(function(a, b){
+                                return a + b;
+                            })||'0'} offset={[-20, 0]}>
                                 <Link href={'/checkout/cart'}>
                                     <a>
                                         <Space direction="vertical" style={{width: '100%', textAlign: 'center'}}>
@@ -126,9 +157,7 @@ export default function Navbar({children}) {
                                     </a>
                                 </Link>
                             </Badge>
-
                         </Col>
-
                     </Row>
                 </Col>
 
@@ -145,24 +174,24 @@ export default function Navbar({children}) {
                         </Menu.Item>
                         {
                             Object.keys(Categories).map((Category) =>
-                                <SubMenu key={Category} title={Category} popupOffset={[0, 0]}
+                                <SubMenu key={Category} title={Categories[Category].name} popupOffset={[0, 0]}
                                          popupClassName={'MenuItem'}
                                          onTitleClick={() => {
                                              router.push(`/${Category.split(' ').join('-')}`);
                                          }
                                          }>
                                     {
-                                        Object.keys(Categories[Category]).map(SubCategory =>
+                                        Object.keys(Categories[Category].subCategories).map(SubCategory =>
                                             <Menu.ItemGroup title={<Link
-                                                href={`/${Category.split(' ').join('-')}/${SubCategory.split(' ').join('-')}`}>{SubCategory}</Link>}
+                                                href={`/${Category.split(' ').join('-')}/${SubCategory.split(' ').join('-')}`}>{Categories[Category].subCategories[SubCategory].name}</Link>}
                                                             key={SubCategory}>
                                                 {
-                                                    Categories[Category][SubCategory].map(name =>
+                                                    Object.keys(Categories[Category].subCategories[SubCategory].subCategories).map(name =>
                                                         <Menu.Item key={name} onClick={e => {
                                                             e.domEvent.preventDefault();
                                                             router.push(`/${Category.split(' ').join('-')}/${SubCategory.split(' ').join('-')}/${name.split(' ').join('-')}`);
                                                         }
-                                                        }>{name}</Menu.Item>
+                                                        }>{Categories[Category].subCategories[SubCategory].subCategories[name].name}</Menu.Item>
                                                     )
                                                 }
                                             </Menu.ItemGroup>

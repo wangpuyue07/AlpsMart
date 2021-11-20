@@ -1,13 +1,14 @@
 import Layout from "../components/layout";
 import {Avatar, Button, Card, Menu, PageHeader, Row, Col,Tag, Typography,Carousel,Space} from "antd";
+
 const { Paragraph,Text } = Typography;
 const { Meta } = Card;
 
 
 
-export default function Home() {
+export default function Home({session,freshData}) {
   return (
-    <Layout >
+    <Layout session={session} freshData={freshData}>
       <Carousel autoplay arrows={true}>
         <div>
           <img alt='' src="https://www.treasurebox.co.nz/media/wysiwyg/slideshow-banners/home-office-furniture-211019-1-0.jpg"/>

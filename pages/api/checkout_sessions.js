@@ -5,15 +5,7 @@ export default async function handler(req, res) {
         try {
             // Create Checkout Sessions from body params.
             const session = await stripe.checkout.sessions.create({
-                line_items: [
-                    {
-                        price: 'price_1JtTsOCnmrpYZEi5JX8M7uIY',
-                        quantity: 2,
-                    },{
-                        price: 'price_1Jt6blCnmrpYZEi5u6qOQOj6',
-                        quantity: 1,
-                    },
-                ],
+                ...req.body,
                 shipping_rates: ['shr_1JtVa1CnmrpYZEi5Wx1q2YtE'],
                 shipping_address_collection: {
                     allowed_countries: ['NZ'],
@@ -25,9 +17,14 @@ export default async function handler(req, res) {
                     'card',
                     'alipay',
                 ],
+                phone_number_collection: {
+                    enabled: true,
+                },
                 mode: 'payment',
-                success_url: `${req.headers.origin}/account/me?success=true&session_id={CHECKOUT_SESSION_ID}`,
+                success_url: `${req.headers.origin}/auth/me?success=true&session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
+                allow_promotion_codes:true,
+                customer_update:{shipping:'auto'}
             });
             res.json({ id: session.id });
         } catch (err) {

@@ -1,35 +1,53 @@
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from "../../components/layout";
 import {useRouter} from 'next/router';
 import {
-    AutoComplete, Alert, Form, Checkbox, Row, Col, Input, Button, Select, Cascader, Divider, Typography
+     Alert, Form, Checkbox, Row, Col, Input, Button, Select, Cascader, Divider, Typography
 
 } from "antd";
 
-const { Option } = Select;
+import {useSession, signIn, signOut, getSession} from "next-auth/react"
+import Loading from '../../components/loading'
+
 const {Title} = Typography;
 
 
 
-export default function Home() {
+export default function Home({freshData}) {
     const router = useRouter();
-    const [form] = Form.useForm();
+    const session = useSession();
+    const {callback} = router.query;
+    useEffect(()=>{
+        if(session.status==='authenticated'){
+            router.replace({
+                pathname: callback||'/auth/me',
+            });
+        }
+    },[session])
 
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
 
-    return (
+
+
+    return session.status!=='unauthenticated'?(<Loading/>):(
         <Layout>
             <Alert style={{marginTop:32}} message={<>Account confirmation is required. Please, check your email for the confirmation link. To resend the confirmation email please <a>click here</a>.</>} type="success" />
             <Row gutter={[36,0]} justify="space-around" style={{marginTop:32,marginBottom:36}} >
                 <Col span={10}>
                     <Title level={3}>Create New Account</Title>
                     <Form
-
-                        form={form}
                         name="register"
-                        onFinish={onFinish}
+                        onFinish={async (values) => {
+                            const res = await fetch('/api/auth/signup',{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(values),
+                            });
+                            const data = await res.json();
+                            console.log(data);
+
+                        }}
                         initialValues={{
 
                         }}
@@ -44,7 +62,7 @@ export default function Home() {
                                     type: 'email',
                                     message: 'The input is not valid E-mail!',
                                 },
-                                {
+                               {
                                     required: true,
                                     message: 'Please input your E-mail!',
                                 },
@@ -166,7 +184,7 @@ export default function Home() {
                             </Checkbox>
                         </Form.Item>
                         <Form.Item>
-                            <Button type="primary"  size={'large'} style={{width:'100%'}} onClick={()=>{router.push('/account/me')}}>
+                            <Button type="primary" htmlType="submit"  size={'large'} style={{width:'100%'}} >
                                 Create Account
                             </Button>
                         </Form.Item>
@@ -178,10 +196,17 @@ export default function Home() {
                 <Col span={10}>
                     <Title level={3}>Sign In to Your Account</Title>
                     <Form
-
-                        form={form}
                         name="signIn"
-                        onFinish={onFinish}
+                        onFinish={async (credentials) => {
+                            const data = await signIn("credentials", {...credentials,redirect:false});
+                           if(data.ok){
+                               const newSession = await getSession();
+                               freshData({session:newSession})
+                           }else{
+                               alert('wrong email or password');
+                            }
+
+                        }}
                         initialValues={{
 
                         }}
@@ -221,9 +246,7 @@ export default function Home() {
 
                         <Form.Item>
                             <Row justify={'space-between'}>
-                                <Col><Form.Item name="remember" valuePropName="checked" noStyle>
-                                    <Checkbox>Remember me</Checkbox>
-                                </Form.Item></Col>
+                                <Col><Checkbox>Remember me</Checkbox></Col>
                                 <Col> <a className="login-form-forgot" href="">
                                     Forgot password
                                 </a></Col>
@@ -231,7 +254,9 @@ export default function Home() {
                         </Form.Item>
 
                         <Form.Item>
-                            <Button type="primary" onClick={()=>{router.push('/account/me')}} size={'large'} style={{width:'100%'}}>
+                            <Button type="primary"
+                                    htmlType="submit"
+                                    size={'large'} style={{width:'100%'}}>
                                 Sign in
                             </Button>
                         </Form.Item>
@@ -243,3 +268,12 @@ export default function Home() {
         </Layout>
     )
 }
+
+
+// export async function getServerSideProps(context) {
+//     return {
+//         props: {
+//             csrfToken: await getCsrfToken(context),
+//         },
+//     }
+// }
