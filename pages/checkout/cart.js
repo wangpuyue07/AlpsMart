@@ -51,7 +51,7 @@ export default function Home({session,freshData}) {
         }
     },[session]);
     return (
-        <Auth>
+        <Auth session={session}>
             <Layout session={session} freshData={freshData}>
                 {
                     session?.user?.cartItems.length == 0 ? <><Row justify={'center'} style={{marginTop:'64px',marginBottom:'12px'}}><Col><Title level={4}>Shopping Cart is Empty</Title></Col></Row>

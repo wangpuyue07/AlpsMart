@@ -32,7 +32,7 @@ export default function Home({session,freshData}) {
     const router = useRouter();
 
     return (
-        <Auth>
+        <Auth session={session}>
             <Layout session={session} freshData={freshData}>
                 <section style={{margin: '0 24px 36px 24px'}}>
                     <Row style={{margin: '2rem 0'}}>

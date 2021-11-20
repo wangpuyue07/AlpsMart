@@ -14,22 +14,23 @@ import {
     Tag,
     Radio,
     Button,
-    Descriptions, Modal,Result
+    Descriptions, Modal, Result, Popconfirm
 } from "antd";
-import {CheckCircleOutlined, PlusOutlined,ShoppingCartOutlined,RollbackOutlined} from '@ant-design/icons';
+import {CheckCircleOutlined, PlusOutlined, ShoppingCartOutlined, RollbackOutlined} from '@ant-design/icons';
 import {getSession} from "next-auth/react";
 import Loading from '../../components/loading'
 
 const {Title, Text} = Typography;
 
-export default function Home({session,freshData}) {
+export default function Home({session, freshData}) {
     const router = useRouter()
     const {sku} = router.query;
     const [visible, setVisible] = useState(false);
     const [product, setProduct] = useState(null);
-    const [quantity,setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(1);
     const [ModalVisible, setModalVisible] = useState(false);
-    useEffect(async ()=>{
+    const [LoginModalVisible, setLoginModalVisible] = useState(false);
+    useEffect(async () => {
         const res = await fetch(`/api/stripe/product/${sku}`, {
             method: 'GET'
         })
@@ -39,9 +40,9 @@ export default function Home({session,freshData}) {
         data.metadata.specifications = JSON.parse(data.metadata.specifications);
         data.metadata.instruction = JSON.parse(data.metadata.instruction);
         setProduct(data);
-    },[sku])
+    }, [sku])
     return (
-        product? <Layout session={session} freshData={freshData}>
+        product ? <Layout session={session} freshData={freshData}>
             <section style={{margin: '0 24px 36px 24px'}}>
                 <Row style={{margin: '2rem 0'}}>
                     <Breadcrumb>
@@ -70,7 +71,7 @@ export default function Home({session,freshData}) {
                     <Col xl={12} md={24}>
                         <Carousel autoplay={false} dots={true}>
                             {
-                                product.images.map((image,index)=><div key={index}>
+                                product.images.map((image, index) => <div key={index}>
                                     <AntImage
                                         preview={{visible: false}}
                                         alt={''}
@@ -83,18 +84,18 @@ export default function Home({session,freshData}) {
                         <div style={{display: 'none'}}>
                             <AntImage.PreviewGroup preview={{visible, onVisibleChange: vis => setVisible(vis)}}>
                                 {
-                                    product.images.map((image,index)=><AntImage key={index} alt={image}
-                                                                           src={image}/>
+                                    product.images.map((image, index) => <AntImage key={index} alt={image}
+                                                                                   src={image}/>
                                     )
                                 }
-                                </AntImage.PreviewGroup>
+                            </AntImage.PreviewGroup>
                         </div>
                     </Col>
                     <Col xl={12} md={24}>
                         <Title level={3}>{product.name}</Title>
                         <Text>SKU: {product.id}</Text>
                         <Card style={{width: '100%', marginTop: '30px'}}>
-                            <Title level={5}>${product.metadata.price/100} NZD</Title>
+                            <Title level={5}>${product.metadata.price / 100} NZD</Title>
                             <Space size={'large'} align="baseline" style={{marginTop: '30px'}}>
                                 <Title level={5}>Qty:</Title>
                                 <Select value={quantity} onChange={(value) => {
@@ -121,47 +122,78 @@ export default function Home({session,freshData}) {
                                 <Col>
                                     <Button style={{padding: '0 48px', marginTop: '24px'}} type="primary" shape="round"
                                             size={'large'} icon={<PlusOutlined/>}
-                                    onClick={async ()=>{
-                                        if(session.user){
-                                            const checkoutSession = await fetch('/api/cart', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json',
-                                                },
-                                                body: JSON.stringify({
-                                                    priceId:product.metadata.priceId,
-                                                    quantity,
-                                                    productId:product.id
-                                                })
-                                            });
-                                            const data = await checkoutSession.json();
-                                            if(data.id){
-                                                const newSession = await getSession();
-                                                freshData({session:newSession})
-                                                setModalVisible(true);
-                                            }
+                                            onClick={async () => {
+                                                if (session?.user) {
+                                                    const checkoutSession = await fetch('/api/cart', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                        body: JSON.stringify({
+                                                            priceId: product.metadata.priceId,
+                                                            quantity,
+                                                            productId: product.id
+                                                        })
+                                                    });
+                                                    const data = await checkoutSession.json();
+                                                    if (data.id) {
+                                                        const newSession = await getSession();
+                                                        freshData({session: newSession})
+                                                        setModalVisible(true);
+                                                    }
 
-                                        }else{
-                                            alert('没登录')
-                                        }
-                                    }}>Buy Now</Button>
+                                                } else {
+                                                    setLoginModalVisible(true);
+                                                }
+                                            }}>Buy Now</Button>
+
                                     <Modal
                                         visible={ModalVisible}
+                                        closable={false}
                                         footer={[
-                                            <Button key="submit"  loading={false} icon={<RollbackOutlined />}
-                                                    onClick={()=>{setModalVisible(false)}}>
+                                            <Button key="submit" loading={false} icon={<RollbackOutlined/>}
+                                                    onClick={() => {
+                                                        setModalVisible(false)
+                                                    }}>
                                                 Continue Shopping
                                             </Button>,
-                                            <Button key="back" type="primary" onClick={()=>{setModalVisible(false);
-                                            router.push('/checkout/cart')}}  icon={<ShoppingCartOutlined />}>
+                                            <Button key="back" type="primary" onClick={() => {
+                                                setModalVisible(false);
+                                                router.push('/checkout/cart')
+                                            }} icon={<ShoppingCartOutlined/>}>
                                                 Go To Cart
                                             </Button>
                                         ]}
+                                        onClosed={()=>{
+                                            console.log(123);
+                                        }}
                                     >
                                         <Result
                                             status="success"
                                             title="You've just added this product to the cart successfully!"
                                             subTitle={product.name}
+                                        />
+                                    </Modal>
+                                    <Modal
+                                        visible={LoginModalVisible}
+                                        closable={false}
+                                        footer={[
+                                            <Button key="submit" loading={false}
+                                                    onClick={() => {
+                                                        setLoginModalVisible(false)
+                                                    }}>
+                                                No
+                                            </Button>,
+                                            <Button key="back" type="primary" onClick={() => {
+                                                setModalVisible(false);
+                                                router.push(`/auth/signin?callback=/product/${sku}`);
+                                            }} >
+                                                Yes
+                                            </Button>
+                                        ]}
+                                    >
+                                        <Result
+                                            title="You need to sign in first, do you wanna sign in now?"
                                         />
                                     </Modal>
                                 </Col>
@@ -172,15 +204,15 @@ export default function Home({session,freshData}) {
                 </Row>
                 <Descriptions style={{marginTop: 24}} title="Product Information:" bordered column={1}>
                     <Descriptions.Item label="Description">
-                        <div dangerouslySetInnerHTML={{__html:product.metadata.longDescription}}></div>
+                        <div dangerouslySetInnerHTML={{__html: product.metadata.longDescription}}></div>
                         <br/>
-                        <strong dangerouslySetInnerHTML={{__html:product.metadata.note}}></strong>
+                        <strong dangerouslySetInnerHTML={{__html: product.metadata.note}}></strong>
                     </Descriptions.Item>
                     <Descriptions.Item label="Features">
                         <p>
                             <ul>
                                 {
-                                    product.metadata.features.map((feature,index)=><li key={index}>{feature}</li>)
+                                    product.metadata.features.map((feature, index) => <li key={index}>{feature}</li>)
                                 }
                             </ul>
                         </p>
@@ -189,7 +221,8 @@ export default function Home({session,freshData}) {
                         <p>
                             <ul>
                                 {
-                                    Object.keys(product.metadata.specifications).map((key,index)=><li key={index}>{key}: {product.metadata.specifications[key]}</li>)
+                                    Object.keys(product.metadata.specifications).map((key, index) => <li
+                                        key={index}>{key}: {product.metadata.specifications[key]}</li>)
                                 }
                             </ul>
                         </p>
@@ -202,6 +235,6 @@ export default function Home({session,freshData}) {
                     </Descriptions.Item>
                 </Descriptions>
             </section>
-        </Layout>:<Loading/>
+        </Layout> : <Loading/>
     )
 }

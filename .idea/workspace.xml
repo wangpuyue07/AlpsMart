@@ -4,23 +4,6 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/loading.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/productCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/constants/categories.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/categories.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/products.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/users.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/auth/signup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/cart/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/addproduct.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/lineItems.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/order.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/product/[id].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/product/listProduct.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/stripe/webhook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/search/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/config/security.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/README.md" afterDir="false" />
@@ -124,23 +107,11 @@
       <change beforePath="$PROJECT_DIR$/../RNTest/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.babelrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/products.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/[slug1]/[slug2]/[slug3].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/[slug3].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/[slug1]/[slug2]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[slug1]/[slug2]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/[slug1]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/[slug1]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/account/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auth/signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/account/me.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auth/me.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/checkout_sessions.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/checkout_sessions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/auth/me.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auth/me.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/checkout/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/checkout/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/product/[sku].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/product/[sku].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" />
@@ -1649,7 +1620,7 @@
       <workItem from="1635347713207" duration="70000" />
       <workItem from="1635347793122" duration="100854000" />
       <workItem from="1636450992345" duration="8110000" />
-      <workItem from="1636534525479" duration="115480000" />
+      <workItem from="1636534525479" duration="118117000" />
     </task>
     <servers />
   </component>
