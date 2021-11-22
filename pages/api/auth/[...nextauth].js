@@ -57,16 +57,20 @@ export default async (req, res) => {
             },
 
             session: async ({session, token}) => {
-                const res = await fetch(`http://${process.env.strapiServer}/users/${token.userId}`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization:
-                            `Bearer ${adminJWT}`,
-                    }
-                })
-                const user = await res.json();
-                session.user = user;
-                session.jwt = token.jwt;
+                try{
+                    const res = await fetch(`http://${process.env.strapiServer}/users/${token.userId}`, {
+                        method: 'GET',
+                        headers: {
+                            Authorization:
+                                `Bearer ${adminJWT}`,
+                        }
+                    })
+                    const user = await res.json();
+                    session.user = user;
+                    session.jwt = token.jwt;
+                }catch (e){
+                    console.log(e.message);
+                }
                 return session;
             },
         },
