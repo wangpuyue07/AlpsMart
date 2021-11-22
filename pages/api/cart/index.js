@@ -16,7 +16,7 @@ export default async function handler(req, res) {
                         cartItem = item;
                     }
                 });
-                const response = await axios.put(`http://${req.headers.host.split(':')[0]}:1337/cart-items/${cartItem.id}`,
+                const response = await axios.put(`http://${process.env.strapiServer}/cart-items/${cartItem.id}`,
                     {
                         quantity: +cartItem.quantity + quantity
                     },
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
                     });
                 res.json(response.data);
             } else {
-                const response = await axios.post(`http://${req.headers.host.split(':')[0]}:1337/cart-items`, {
+                const response = await axios.post(`http://${process.env.strapiServer}/cart-items`, {
                         priceId: req.body.priceId,
                         user: session.user.id,
                         quantity,
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     }
     if (req.method === 'DELETE') {
         try {
-            const response = await axios.delete(`http://${req.headers.host.split(':')[0]}:1337/cart-items/${req.body.id}`,
+            const response = await axios.delete(`http://${process.env.strapiServer}/cart-items/${req.body.id}`,
                 {
                     headers: {
                         Authorization:
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     }
     if (req.method === 'PUT') {
         try {
-            const response = await axios.put(`http://${req.headers.host.split(':')[0]}:1337/cart-items/${req.body.id}`,
+            const response = await axios.put(`http://${process.env.strapiServer}/cart-items/${req.body.id}`,
                 {
                     quantity: req.body.quantity
                 },

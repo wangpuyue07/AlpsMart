@@ -9,7 +9,7 @@ export default async function handler(req, res) {
                 email: req.body.email,
                 name: `${req.body.firstName} ${req.body.lastName}`,
             });
-            const response = await axios.post(`http://${req.headers.host.split(':')[0]}:1337/auth/local/register`, {
+            const response = await axios.post(`http://${process.env.strapiServer}/auth/local/register`, {
                 username: customer.name,
                 email: customer.email,
                 password: req.body.password,

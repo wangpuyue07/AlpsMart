@@ -16,7 +16,7 @@ export default async (req, res) => {
                 async authorize(credentials) {
                     credentials.identifier = credentials.email;
                     try {
-                        const res = await fetch(`http://${req.headers.host.split(':')[0]}:1337/auth/local`, {
+                        const res = await fetch(`http://${process.env.strapiServer}/auth/local`, {
                             method: 'POST',
                             body: JSON.stringify(credentials),
                             headers: {"Content-Type": "application/json"}
@@ -57,7 +57,7 @@ export default async (req, res) => {
             },
 
             session: async ({session, token}) => {
-                const res = await fetch(`http://localhost:1337/users/${token.userId}`, {
+                const res = await fetch(`http://${process.env.strapiServer}/users/${token.userId}`, {
                     method: 'GET',
                     headers: {
                         Authorization:
