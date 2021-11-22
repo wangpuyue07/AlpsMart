@@ -4,7 +4,55 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/config/routes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/controllers/cart-item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/documentation/1.0.0/cart-item.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/models/cart-item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/models/cart-item.settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/cart-item/services/cart-item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/config/routes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/controllers/categories.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/documentation/1.0.0/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/models/categories.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/models/categories.settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/categories/services/categories.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/config/routes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/controllers/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/documentation/1.0.0/order.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/models/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/models/order.settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/order/services/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/config/routes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/controllers/parcel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/documentation/1.0.0/parcel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/models/parcel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/models/parcel.settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/api/parcel/services/parcel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/config/database.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/config/functions/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/config/functions/cron.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/config/functions/responses/404.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/config/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/documentation/documentation/1.0.0/full_documentation.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/documentation/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/email/documentation/1.0.0/email-Email.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/upload/documentation/1.0.0/upload-File.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/config/jwt.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/config/security.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/documentation/1.0.0/users-permissions-Role.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/documentation/1.0.0/users-permissions-User.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/users-permissions/models/User.settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alps_mart_cms/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../commerce" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../sneakerbot_fe/components/forms/addressForm.js" afterDir="false" />
@@ -28,7 +76,6 @@
       <change beforePath="$PROJECT_DIR$/../.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workSpace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workSpace.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../111.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Monthly Email Report.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/.buckconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/.eslintrc.js" beforeDir="false" />
@@ -111,19 +158,19 @@
       <change beforePath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/api/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_init_1108.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_newV_0606.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_new_0607.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/asd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/asd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/asdd.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/re.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/re1.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/SS20.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/asd.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/public/uploads/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/sources.xlsx" beforeDir="false" />
@@ -1617,7 +1664,7 @@
       <workItem from="1635347713207" duration="70000" />
       <workItem from="1635347793122" duration="100854000" />
       <workItem from="1636450992345" duration="8110000" />
-      <workItem from="1636534525479" duration="124329000" />
+      <workItem from="1636534525479" duration="125062000" />
     </task>
     <servers />
   </component>
