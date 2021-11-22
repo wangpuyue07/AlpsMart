@@ -39,12 +39,7 @@ export default async (req, res) => {
             })
         ],
         session: {
-            session: "jwt",
-            maxAge: 30 * 24 * 60 * 60,
             strategy: "jwt",
-        },
-        jwt:{
-            secret: 'jose newkey -s 512 -t oct -a HS512',
         },
         secret: 'jose newkey -s 512 -t oct -a HS512',
         callbacks: {
