@@ -37,11 +37,7 @@ export default async (req, res) => {
                 }
             })
         ],
-
-        session: {
-            strategy: "jwt",
-        },
-
+        session: { session: "jwt" },
         secret: 'jose newkey -s 512 -t oct -a HS512',
         callbacks: {
             async signIn({user, account, profile, email, credentials}) {
