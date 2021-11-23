@@ -101,7 +101,7 @@ export default function Navbar({session,freshData}) {
                         </Link>
                     </a>
                 </Col>
-                <Col span={10}>
+                <Col span={12}>
                     <AutoComplete
                         dropdownClassName="certain-category-search-dropdown"
                         style={{width: '85%'}}
@@ -123,18 +123,9 @@ export default function Navbar({session,freshData}) {
                         />
                     </AutoComplete>
                 </Col>
-                <Col span={6}>
+                <Col span={4}>
                     <Row align="middle">
-                        <Col span={8}>
-                            <Link href={'/auth/signin'}><a>
-                                <Space direction="vertical" style={{width: '100%', textAlign: 'center'}}>
-                                    <QuestionCircleOutlined
-                                        style={{fontSize: '2.5rem'}}/>
-                                    <strong>FAQs</strong>
-                                </Space>
-                            </a></Link>
-                        </Col>
-                        <Col span={8}>
+                        <Col span={12}>
                             <Link href={'/auth/me'}><a>
                                 <Space direction="vertical" style={{width: '100%', textAlign: 'center'}}>
                                     <UserOutlined
@@ -143,8 +134,8 @@ export default function Navbar({session,freshData}) {
                                 </Space></a>
                             </Link>
                         </Col>
-                        <Col span={8}>
-                            <Badge count={session?.user?.cartItems.map(item=>item.quantity).reduce(function(a, b){
+                        <Col span={12}>
+                            <Badge count={session?.user?.cartItems.length==0?0:session?.user?.cartItems.map(item=>item.quantity).reduce(function(a, b){
                                 return a + b;
                             })||'0'} offset={[-20, 0]}>
                                 <Link href={'/checkout/cart'}>

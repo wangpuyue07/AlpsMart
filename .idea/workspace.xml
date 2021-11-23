@@ -4,6 +4,13 @@
     <list default="true" id="7aac933a-b610-47ee-9927-187235dfb0ca" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/sshConfigs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SneakerBot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/checkouSession.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/lineItems.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/information/about-us.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/information/pick-up.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/information/returns-and-refunds-policy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/information/shipping.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/information/terms-and-conditions.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.editorconfig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.env.example" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../alps_mart_cms/.eslintignore" afterDir="false" />
@@ -154,29 +161,36 @@
       <change beforePath="$PROJECT_DIR$/../RNTest/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../RNTest/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/auth/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/auth/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/stripe/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/stripe/webhook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/auth/me.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auth/me.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/checkout/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/checkout/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-release.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../asd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../asd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/api/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_init_1108.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_newV_0606.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo_new_0607.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/asd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/asdd.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/re.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/barkers/re1.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/SS20.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/asd.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/public/uploads/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/api/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/SS20/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/ecco/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/ecco/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/extensions/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/ecco/sources.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../deploy/ecco/tick.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/ecco/tick.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alps_mart_cms/public/uploads/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/online/asd.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/online/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../deploy/online/new.js" beforeDir="false" />
@@ -1620,6 +1634,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
   <component name="ProjectId" id="205wMgbis9WB4HgNS7uGU9915Qz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -1636,6 +1653,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -1666,7 +1684,7 @@
       <workItem from="1635347713207" duration="70000" />
       <workItem from="1635347793122" duration="100854000" />
       <workItem from="1636450992345" duration="8110000" />
-      <workItem from="1636534525479" duration="127234000" />
+      <workItem from="1636534525479" duration="155218000" />
     </task>
     <servers />
   </component>

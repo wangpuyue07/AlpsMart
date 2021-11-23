@@ -17,12 +17,11 @@ import {
     Table, Space, Tag
 
 } from "antd";
-import {loadStripe} from '@stripe/stripe-js';
-const stripePromise = loadStripe('pk_test_51JsqSTCnmrpYZEi5iNzSIprkvw0HDhUMyXebZxV85cwj4i6r8GLKyp7x83M4i0XZTggi1CP1Oh1tVJBa622mRVyq00Fh56I11w');
-
+import moment from 'moment';
 import Auth from '../../components/auth';
 import {signOut,useSession} from "next-auth/react";
 import {HighlightOutlined, SyncOutlined, CheckCircleOutlined, EditOutlined} from "@ant-design/icons";
+import axios from "axios";
 
 
 const {Title} = Typography;
@@ -30,6 +29,27 @@ const {Title} = Typography;
 
 export default function Home({session,freshData}) {
     const router = useRouter();
+    const [orders,setOrders] = useState([]);
+    useEffect(async ()=>{
+        if(session.user){
+            const datas = [];
+            for(let order of session.user.orders){
+                const {data} = await axios.get(`http://${process.env.strapiServer}/orders/${order.id}`,
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${session.jwt}`,
+                        },
+                    });
+                for(let parcel of data.parcels){
+                    const {data:product} = await axios.get(`/api/stripe/product/${parcel.barcode}`);
+                    parcel.product = product;
+                }
+                datas.push(data);
+            }
+            setOrders(datas);
+        }
+    },[session])
 
     return (
         <Auth session={session}>
@@ -100,65 +120,47 @@ export default function Home({session,freshData}) {
                             </Descriptions>
 
                         </Col></Row>
+                    {
+                        orders.length!=0&&<Title style={{marginTop:64}} level={3}>View All Orders</Title>
+                    }
 
-
-                    <Table style={{marginTop: '36px', marginBottom: '36px'}}
-                           title={() => <Title level={3}>View All Orders</Title>}
-                           pagination={true}
-                           columns={[
-                               {
-                                   title: 'Item',
-                                   dataIndex: 'item',
-                                   key: 'item',
-                                   render: item => <Space>
-                                       <img
-                                           src="https://www.treasurebox.co.nz/media/catalog/product/cache/1/thumbnail/80x60/9df78eab33525d08d6e5fb8d27136e95/2/2/22005.jpg"
-                                           width="80" height="60" alt="MAIZE 1.3M LED Entertainment Unit - WHITE"/>
-                                       <Title level={5}>{item}</Title>
-                                   </Space>,
-                               }, {
-                                   title: 'Price',
-                                   dataIndex: 'price',
-                                   key: 'price',
-                                   render: item => item,
-                               }, {
-                                   title: 'Quantity',
-                                   dataIndex: 'quantity',
-                                   key: 'quantity',
-                                   render: item => item,
-                               }, {
-                                   title: 'Subtotal',
-                                   dataIndex: 'subtotal',
-                                   key: 'subtotal',
-                                   render: item => item,
-                               }, {
-                                   title: 'Status',
-                                   key: 'status',
-                                   render: item => item.status,
-                               }
-                           ]}
-                           dataSource={[
-                               {
-                                   key: '1',
-                                   item: 'MAIZE 1.3M LED Entertainment Unit - WHITE',
-                                   price: '$32.00',
-                                   quantity: 1,
-                                   subtotal: '$32.00',
-                                   status: <Tag icon={<SyncOutlined spin/>} color="processing">
-                                       delivering
-                                   </Tag>
-                               },
-                               {
-                                   key: '2',
-                                   item: 'MAIZE 1.3M LED Entertainment Unit - BLACK',
-                                   price: '$32.00',
-                                   quantity: 2,
-                                   subtotal: '$64.00',
-                                   status: <Tag icon={<CheckCircleOutlined/>} color="success">
-                                       delivered
-                                   </Tag>
-                               },
-                           ]}/>
+                    {
+                        orders.map((order)=><Table style={{marginBottom: '36px'}}
+                                                                 title={() => <Title level={4}>{moment(order.published_at).format('MMMM Do YYYY, h:mm:ss a')}</Title>}
+                                                                 pagination={false}
+                                                                 columns={[
+                                                                     {
+                                                                         title: 'Item',
+                                                                         dataIndex: 'item',
+                                                                         key: 'item',
+                                                                         render: item => <Space>
+                                                                             <img
+                                                                                 src={item.image}
+                                                                                 width="80" height="60" alt={item.name}/>
+                                                                             <Title level={5}>{item.name}</Title>
+                                                                         </Space>,
+                                                                     }, {
+                                                                         title: 'Price',
+                                                                         dataIndex: 'price',
+                                                                         key: 'price',
+                                                                         render: item => item,
+                                                                     }, {
+                                                                         title: 'Status',
+                                                                         key: 'status',
+                                                                         render: item => item.status,
+                                                                     }
+                                                                 ]}
+                                                                 dataSource={order.parcels.map(parcel=>{
+                                                                     return {
+                                                                         key: parcel.id,
+                                                                         item: {name:parcel.product.name,image:parcel.product.images[0]},
+                                                                         price: `$${parcel.product.metadata.price/100}`,
+                                                                         status: <Tag icon={<SyncOutlined spin/>} color="processing">
+                                                                             delivering
+                                                                         </Tag>
+                                                                     }
+                                                                 })}/>)
+                    }
                 </section>
             </Layout>
         </Auth>

@@ -16,7 +16,7 @@ export default function Auth({children,session}) {
             router.push(`/auth/signin?callback=${window.location.pathname}`, '/auth/signin')
         }
     }, [status]);
-    console.log(session);
+    console.log(status,session);
     if (session?.user) {
         return children
     }

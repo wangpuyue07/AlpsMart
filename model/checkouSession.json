@@ -1,0 +1,60 @@
+{
+  id: 'cs_test_b1nBZTy0LccNbgk7eOuz9201uh7V6fGEvnjvu018nJ5Nt7nzucZFZogSjo',
+  object: 'checkout.session',
+  after_expiration: null,
+  allow_promotion_codes: true,
+  amount_subtotal: 160000,
+  amount_total: 162500,
+  automatic_tax: { enabled: true, status: 'complete' },
+  billing_address_collection: null,
+  cancel_url: 'http://localhost:3000/?canceled=true',
+  client_reference_id: null,
+  consent: null,
+  consent_collection: null,
+  currency: 'nzd',
+  customer: 'cus_KZ3xgEOysvdm6S',
+  customer_details: {
+    email: 'anthonywang0517@gmail.com',
+    phone: '+642108824590',
+    tax_exempt: 'none',
+    tax_ids: []
+  },
+  customer_email: null,
+  expires_at: 1637743959,
+  livemode: false,
+  locale: null,
+  metadata: { strapiUserId: '3' },
+  mode: 'payment',
+  payment_intent: 'pi_3JyujzCnmrpYZEi50yleVRac',
+  payment_method_options: {},
+  payment_method_types: [ 'card', 'alipay' ],
+  payment_status: 'paid',
+  phone_number_collection: { enabled: true },
+  recovered_from: null,
+  setup_intent: null,
+  shipping: {
+    address: {
+      city: 'Auckland',
+      country: 'NZ',
+      line1: '29A Don Buack Road',
+      line2: 'Massey, Massey',
+      postal_code: '0614',
+      state: ''
+    },
+    name: 'PUYUE WANG'
+  },
+  shipping_address_collection: { allowed_countries: [ 'NZ' ] },
+  shipping_options: [
+    {
+      shipping_amount: 2500,
+      shipping_rate: 'shr_1JtVa1CnmrpYZEi5Wx1q2YtE'
+    }
+  ],
+  shipping_rate: 'shr_1JtVa1CnmrpYZEi5Wx1q2YtE',
+  status: 'complete',
+  submit_type: null,
+  subscription: null,
+  success_url: 'http://localhost:3000/auth/me?success=true&session_id={CHECKOUT_SESSION_ID}',
+  total_details: { amount_discount: 0, amount_shipping: 2500, amount_tax: 326 },
+  url: null
+}

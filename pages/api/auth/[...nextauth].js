@@ -9,6 +9,7 @@ export default async (req, res) => {
     return NextAuth(req, res, {
         providers: [
             CredentialsProvider({
+                id: "credentials",
                 name: 'Credentials',
                 credentials: {
                     email: {label: "Email", type: "text"},
@@ -22,7 +23,9 @@ export default async (req, res) => {
                             body: JSON.stringify(credentials),
                             headers: {"Content-Type": "application/json"}
                         })
+
                         const data = await res.json();
+                        console.log(123,data);
                         if (!data.jwt) {
                             return null;
                         }
@@ -30,9 +33,6 @@ export default async (req, res) => {
                         return data;
                     } catch (e) {
                         console.log('caught error');
-                        // const errorMessage = e.response.data.message
-                        // Redirecting to the login page with error message          in the URL
-                        // throw new Error(errorMessage + '&email=' + credentials.email)
                         return null;
                     }
                 }

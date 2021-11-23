@@ -4,7 +4,7 @@ module.exports = withAntdLess({
   lessVarsFilePath: './styles/antd.less',
   reactStrictMode: true,
   env: {
-    strapiServer: 'www.alpsmart.asia:1337',
+    strapiServer: 'www.alpsmart.asia:1337'
   },
   async headers() {
     return [

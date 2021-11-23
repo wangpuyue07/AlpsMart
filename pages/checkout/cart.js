@@ -36,7 +36,7 @@ export default function Home({session,freshData}) {
         const newSession = await getSession();
         freshData({session:newSession});
         setLoading(false);
-    }, 2000);
+    }, 1000);
     useEffect(async ()=>{
         if(session?.user&&session?.user.cartItems.length!=0){
             setLoading(true);
@@ -81,7 +81,7 @@ export default function Home({session,freshData}) {
                                    title: 'Quantity',
                                    dataIndex: 'quantityItem',
                                    key: 'quantityItem',
-                                   render: ({quantity,cartId}) => <InputNumber addonBefore="+" addonAfter="$" defaultValue={quantity} step={1}
+                                   render: ({quantity,cartId}) => <InputNumber key={cartId} addonBefore="+" addonAfter="$" defaultValue={quantity} step={1}
                                                                     onChange={(quantity)=>{
                                                                         delayAddCart({quantity,cartId});
                                                                     }}/>,
@@ -199,7 +199,12 @@ export default function Home({session,freshData}) {
                                                         }
                                                     }),
                                                     customer: session.user.stripeId,
-
+                                                    metadata:{
+                                                        strapiUserId:session.user.id
+                                                    },
+                                                    payment_intent_data:{
+                                                        receipt_email:session.user.email
+                                                    }
                                                 }),
                                             });
                                             const {id} = await checkoutSession.json();

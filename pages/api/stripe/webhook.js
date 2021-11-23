@@ -1,7 +1,10 @@
 import {buffer} from "micro";
+import axios from "axios";
 
 const stripe = require('stripe')('sk_test_51JsqSTCnmrpYZEi5xmbY7pMqig31mycLKrmMj7dyrTdGVQRPvjTXgpLhlP0tpXH6iGjBtx7ouj8VzFHPLoAo9uXP00ZMFJYgIm');
 const endpointSecret = 'whsec_E4zpPQGWRsPL1GBXt46IrWUqOuX8RLvs';
+const adminJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM3MzA2NjAyLCJleHAiOjE2Mzk4OTg2MDJ9.BGFPthHq9QEdH4Pi92nfVXtnP9-RU3dYJ38UKCpxE6c';
+
 
 export const config = {
     api: {
@@ -31,12 +34,52 @@ export default async function handler(request, response) {
 
         // Handle the event
         switch (event.type) {
-            case 'checkout.session.completed':{
+            case 'checkout.session.completed': {
                 const session = event.data.object;
                 if (session?.payment_status === 'paid') {
-                    console.log("1.获取session对应货物");
-                    console.log("2.strapi更新清空购物车");
-                    console.log("3.strapi更新订单session");
+                    const {data:order} = await axios.post(`http://${process.env.strapiServer}/orders`, {
+                            stripeSessionId: session.id,
+                            parcels: [],
+                            user: session.metadata.strapiUserId
+                        },
+                        {
+                            headers: {
+                                Authorization:
+                                    `Bearer ${adminJWT}`,
+                            },
+                        });
+                    const {data: listLineItems} = await stripe.checkout.sessions.listLineItems(session.id);
+                    for (let item of listLineItems) {
+                        for (let i = 0; i < item.quantity; i++) {
+                            await axios.post(`http://${process.env.strapiServer}/parcels`, {
+                                    postId: "",
+                                    barcode: item.price.product,
+                                    order: order.id
+                                },
+                                {
+                                    headers: {
+                                        Authorization:
+                                            `Bearer ${adminJWT}`,
+                                    },
+                                });
+                        }
+                    };
+                    const {data: user} = await axios.get(`http://${process.env.strapiServer}/users/${session.metadata.strapiUserId}`, {
+                            headers: {
+                                Authorization:
+                                    `Bearer ${adminJWT}`,
+                            },
+                        }
+                    );
+                    for (let cartItem of user.cartItems) {
+                        await axios.delete(`http://${process.env.strapiServer}/cart-items/${cartItem.id}`,
+                            {
+                                headers: {
+                                    Authorization:
+                                        `Bearer ${adminJWT}`,
+                                },
+                            });
+                    }
                 }
                 break;
             }

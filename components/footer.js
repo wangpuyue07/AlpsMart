@@ -27,50 +27,26 @@ export default function Footer({children}) {
                     <Space style={{width: '100%', maxWidth: '1170px', margin: '0 auto'}} split={<Divider/>}
                            direction="vertical">
                         <Row>
-                            <Col span={6}>
-                                <Title level={4}>NEED HELP?</Title>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Contact Us
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Office Hours
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Frequently Asked Questions
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Laybuy Frequently Asked Questions
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Sitemap
-                                </Link></p>
-                            </Col>
-                            <Col span={6}>
+                            <Col span={10}>
                                 <Title level={4}>INFORMATION</Title>
-                                <p><Link href="https://ant.design" target="_blank">
+                                <p><Link href="/information/returns-and-refunds-policy" target="_blank">
                                     About Us
                                 </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    About Treasure Coins
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
+                                <p><Link href="/information/shipping" target="_blank">
                                     Shipping Information
                                 </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
-                                    Laybuy Frequently Asked Questions
-                                </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
+                                <p><Link href="/information/returns-and-refunds-policy" target="_blank">
                                     Pick Up Information
                                 </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
+                                <p><Link href="/information/returns-and-refunds-policy" target="_blank">
                                     Returns & Refunds Policy
                                 </Link></p>
-                                <p><Link href="https://ant.design" target="_blank">
+                                <p><Link href="/information/terms-and-conditions" target="_blank">
                                     Terms & Conditions
                                 </Link></p>
 
                             </Col>
-                            <Col span={6}>
+                            <Col span={8}>
                                 <Title level={4}>ADDRESS:</Title>
                                 <p>29A Don Buck Road, <br/>Massey, Auckland, New Zealand</p>
                             </Col>
@@ -111,8 +87,8 @@ export default function Footer({children}) {
                                 <Space split={<Divider type={'vertical'}/>}>
                                     <Link>About Us</Link>
                                     <Link>Sitemap</Link>
-                                    <Link>Terms & Conditions</Link>
-                                    <Link>Privacy Policy</Link>
+                                    <Link target="_blank" href={'/information/terms-and-conditions'}>Terms & Conditions</Link>
+                                    <Link target="_blank" href={'/information/returns-and-refunds-policy'}>Privacy Policy</Link>
                                     <Text>© Copyright 2021 Alps Information Technology Ltd. <br/>All Rights Reserved.</Text>
                                 </Space>
                             </Col>
