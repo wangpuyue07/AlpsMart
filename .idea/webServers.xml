@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="77f4a9b8-3f63-4b78-b88e-05146774ad92" name="alpsmart.asia">
+        <fileTransfer accessType="SFTP" host="www.alpsmart.asia" port="22" sshConfigId="98365d32-d326-44f0-a3cb-cc3540fe4d5e" sshConfig="ubuntu@www.alpsmart.asia:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -8,11 +8,12 @@ import Loading from '../components/loading'
 
 
 
-export default function Auth({children,session}) {
+export default function Auth({children,session,freshData}) {
     const {status} = useSession();
     const router = useRouter();
     React.useEffect(() => {
         if (status === "unauthenticated") {
+            freshData({});
             router.push(`/auth/signin?callback=${window.location.pathname}`, '/auth/signin')
         }
     }, [status]);
