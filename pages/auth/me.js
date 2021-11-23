@@ -125,7 +125,7 @@ export default function Home({session,freshData}) {
                     }
 
                     {
-                        orders.map((order)=><Table style={{marginBottom: '36px'}}
+                        orders.map((order)=><Table key={order.id} style={{marginBottom: '36px'}}
                                                                  title={() => <Title level={4}>{moment(order.published_at).format('MMMM Do YYYY, h:mm:ss a')}</Title>}
                                                                  pagination={false}
                                                                  columns={[

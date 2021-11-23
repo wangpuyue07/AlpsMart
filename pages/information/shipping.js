@@ -151,7 +151,7 @@ export default function Home({session, freshData}) {
                                     <strong>My account</strong> - If you have an account, simply sign in and go to the
                                     ‘My Account’ section to see updates on all your orders.
                                     <br/><br/>
-                                    <strong>Not Received Any Tracking Email / Without Account</strong> - If you don't
+                                    <strong>Not Received Any Tracking Email / Without Account</strong> - If you don&apos;t
                                     have an account under Alpsmart or receiving tracking email failed, just simply click
                                     here and provide the related information (eg. order number, order email) about your
                                     order to see updates.
