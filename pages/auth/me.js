@@ -34,13 +34,7 @@ export default function Home({session,freshData}) {
         if(session.user){
             const datas = [];
             for(let order of session.user.orders){
-                const {data} = await axios.get(`http://${process.env.strapiServer}/orders/${order.id}`,
-                    {
-                        headers: {
-                            Authorization:
-                                `Bearer ${session.jwt}`,
-                        },
-                    });
+                const {data} = await axios.get(`/api/order/${order.id}`);
                 for(let parcel of data.parcels){
                     const {data:product} = await axios.get(`/api/stripe/product/${parcel.barcode}`);
                     parcel.product = product;
